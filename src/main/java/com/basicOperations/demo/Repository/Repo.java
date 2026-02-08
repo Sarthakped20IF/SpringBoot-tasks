@@ -1,4 +1,8 @@
 package com.basicOperations.demo.Repository;
 
-public interface Repo {
+import com.basicOperations.demo.Entity.UserEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface Repo extends JpaRepository<UserEntity, Long> {
+
 }
