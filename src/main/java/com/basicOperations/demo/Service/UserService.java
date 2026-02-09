@@ -13,6 +13,7 @@ public class UserService {
 
     @Autowired
     private Repo repo;
+
     public List<UserEntity> getAll(){
         List<UserEntity> Users = repo.findAll();
         return Users;
@@ -32,5 +33,10 @@ public class UserService {
     public Optional<UserEntity> getById(Long Id){
         UserEntity userId = repo.getById(Id);
         return Optional.of(userId);
+    }
+
+    public Optional<UserEntity> findByUserName(String userName){
+        UserEntity user = repo.findByUserName(userName);
+        return Optional.ofNullable(user);
     }
 }

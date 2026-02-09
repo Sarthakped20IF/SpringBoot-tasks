@@ -38,6 +38,10 @@ public class IpController {
     @GetMapping("/allUsers") public List<UserEntity> getAll(){
         return userService.getAll();
     }
+
+    @GetMapping("/getbyUn/{userName}") public UserEntity getByUn(@PathVariable String userName){
+        return userService.findByUserName(userName).orElseThrow(()-> new RuntimeException("User Not Found!"));
+    }
     @PostMapping("/create-user")
     public UserEntity createUser(@RequestBody UserEntity userEntity){
         return userService.createUser(userEntity);
