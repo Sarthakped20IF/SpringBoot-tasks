@@ -1,7 +1,6 @@
 package com.basicOperations.demo.Controller;
 
 import com.basicOperations.demo.Entity.UserEntity;
-import com.basicOperations.demo.Repository.Repo;
 import com.basicOperations.demo.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +12,22 @@ import java.util.List;
 public class IpController {
 
 
-    @Autowired
-    private Repo repo;
+//    @Autowired
+//    private Repo repo;
+//    Controller should not have the access of the repository so do not autowire repo in controller
 
-    @Autowired
-    private UserService userService;
+//    Injecting dependency manually (Constructor Injection)
+//    Note : The modifier should be private for security purposes
+//    the constructer should be of the class which we are injecting the dependency
+//    the param should be the object of the class we want to call
+    private final UserService userService;
+
+    public IpController(UserService userService){
+        this.userService = userService;
+    }
+// Injecting dependencies using springboot feature
+//    @Autowired
+//    private UserService userService;
 
     @PostMapping("/getop")
     public String printUser(@RequestBody UserEntity userEntity){
